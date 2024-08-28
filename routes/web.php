@@ -29,5 +29,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('xoa/{id}', 'destroy')->name('delete');
             Route::post('trang-thai/{id}', 'postStatus')->name('status');
         });
+
+        Route::controller(ProductController::class)->prefix('product')->name('product.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('tao-moi', 'create')->name('create');
+            Route::post('tao-moi', 'store');
+            Route::get('cap-nhap/{id}', 'edit')->name('update');
+            Route::post('cap-nhap/{id}', 'update');
+            Route::post('xoa/{id}', 'destroy')->name('delete');
+            Route::post('trang-thai/{id}', 'postStatus')->name('status');
+        });
     });
 });

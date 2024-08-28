@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('url')->nullable();
+            $table->unsignedTinyInteger('point')->default(0);
             $table->date('date_product')->nullable();
-            $table->unsignedTinyInteger('is_verified')->default(1);
+            $table->unsignedTinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
