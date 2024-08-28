@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_instruction_manual_rate', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('value')->nullable();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('post_id');
+            $table->string('title');
+            $table->string('image');
+            $table->string('url')->nullable();
+            $table->date('date_product')->nullable();
+            $table->unsignedTinyInteger('is_verified')->default(1);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('m_instruction_manual_rate');
+        Schema::dropIfExists('users');
     }
 };

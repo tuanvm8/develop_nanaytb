@@ -58,9 +58,9 @@
                                         id="form-status-{{ $user->id }}">
                                         @csrf
                                         <input type="checkbox"
-                                            class="form-check-input status {{ $user->status == 1 ? 'active-item' : 'deactive-item' }}"
+                                            class="form-check-input status {{ $user->status == 2 ? 'active-item' : 'deactive-item' }}"
                                             name="status" data-value="{{ $user->id }}" id="status-{{ $user->id }}"
-                                            {{ $user->status == 1 ? 'checked' : '' }}>
+                                            {{ $user->status == 2 ? 'checked' : '' }}>
                                         <label class="form-check-label" type="hidden"
                                             for="status-{{ $user->id }}"></label>
                                     </form>

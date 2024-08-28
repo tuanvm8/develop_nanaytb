@@ -9,33 +9,28 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class StatusChangeNotification extends Mailable
 {
     use Queueable, SerializesModels;
+    public $user;
 
     /**
      * Create a new message instance.
      */
-
-    public $contact;
-
-    public function __construct($contact)
+    public function __construct($user)
     {
-        $this->contact  = $contact;
+        $this->user = $user;
     }
 
     /**
      * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->subject('E-Mail Từ Người dùng')
-            ->view('admin.email.check_email');
+        return new Envelope(
+            subject: 'E-Mail Từ Hệ Thống NANAYTB',
+        );
     }
-
-    /**
-     * Get the message content definition.
-     */
 
     /**
      * Get the attachments for the message.
@@ -45,5 +40,11 @@ class ContactMail extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->view('admin.emails.status_change')
+            ->with(['user' => $this->user]);
     }
 }

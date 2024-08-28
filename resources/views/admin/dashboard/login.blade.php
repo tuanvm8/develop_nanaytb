@@ -52,7 +52,7 @@
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary rounded-pill" type="button">Đăng nhập</button>
                         <div class="text-center mt-1">
-                            <a href="{{ route('admin.resetPassword.create') }}"
+                            <a href="#"
                                 class="fst-italic text-decoration-none">Quên
                                 mật khẩu?</a>
                         </div>

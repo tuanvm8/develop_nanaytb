@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\UserStatusChanged;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateRequest;
 use App\Http\Requests\User\UpdateRequest;
@@ -127,8 +128,9 @@ class UserController extends Controller
         if (!$user) return back()->with('messageError', config('message.data_not_found'));
         try {
             DB::beginTransaction();
-            $user->status = ($user->status == 1 ? 2 : 1);
+            $user->status = ($user->status == 2 ? 1 : 2);
             $user->save();
+            event(new UserStatusChanged($user));
             DB::commit();
             return redirect()->route('admin.user.index')->with('messageSuccess', config('message.status_success'));
         } catch (\Throwable $th) {
