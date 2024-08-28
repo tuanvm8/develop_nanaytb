@@ -1,4 +1,4 @@
-@section('headerTitle', 'Quản trị - Danh sách nhân sự')
+@section('headerTitle', 'Quản trị - Danh sách người dùng')
 @extends('admin.layout')
 @section('templateContent')
     <div class="content-header">
@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item">
                             <a href="#" class="text-decoration-none">Trang chủ </a>
                         </li>
-                        <li class="breadcrumb-item active">Danh sách nhân sự </li>
+                        <li class="breadcrumb-item active">Danh sách người dùng</li>
                     </ol>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         @include('admin.core.alert')
         <div class="d-flex justify-content-between">
             <h1 class="fs-3 m-0">
-                Danh sách nhân sự
+                Danh sách người dùng
             </h1>
             <a href="{{ route('admin.user.create') }}" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -39,6 +39,7 @@
                         <th scope="col">Tên đăng nhập</th>
                         <th scope="col" class="text-center">Email</th>
                         <th scope="col" class="text-center">Phone</th>
+                        <th scope="col" class="text-center">Point</th>
                         <th scope="col" class="text-center" width="100">Trạng thái</th>
                         <th scope="col" class="text-center" width="5%"></th>
                     </tr>
@@ -50,6 +51,7 @@
                             <td>{{ $user->username }}</td>
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">{{ $user->phone }}</td>
+                            <td class="text-center">{{ 10 }}</td>
                             <td class="text-center">
                                 <div class="form-check form-switch ms-4 d-flex justify-content-center">
                                     <form action="{{ route('admin.user.status', ['id' => $user->id]) }}" method="POST"

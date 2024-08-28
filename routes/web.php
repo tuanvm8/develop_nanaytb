@@ -1,18 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\InstructionController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\RecruitmentController;
-use App\Http\Controllers\Admin\ResetPassWordController;
-use App\Http\Controllers\Admin\SlideController;
-use App\Http\Controllers\Admin\SocialController;
-use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Middleware\Authenticate;
@@ -23,13 +14,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [DashboardController::class, 'getLogin'])->name('login');
     Route::post('login', [DashboardController::class, 'postLogin']);
     Route::get('logout', [DashboardController::class, 'getLogOut'])->name('logout');
-
-    Route::controller(ResetPassWordController::class)->prefix('resetPassword')->name('resetPassword.')->group(function () {
-        Route::get('tao-moi', 'getForgotPassword')->name('create');
-        Route::post('tao-moi', 'postForgotPassword');
-        Route::get('reset-password/{token}', 'showResetPasswordForm')->name('getCreatePass');
-        Route::post('reset-password', 'submitResetPasswordForm')->name('reset-password');
-    });
 
     Route::middleware([Authenticate::class])->group(function () {
 
@@ -56,71 +40,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('trang-thai/{id}', 'postStatus')->name('status');
         });
 
-        Route::controller(SocialController::class)->prefix('social')->name('social.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-        });
-
         Route::controller(PostController::class)->prefix('post')->name('post.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-        });
-
-        Route::controller(InstructionController::class)->prefix('instruction')->name('instruction.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-        });
-
-        Route::controller(ContactController::class)->prefix('contact')->name('contact.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store')->name('store');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-            Route::post('kiem-duyet/{id}', 'postSupported')->name('supported');
-        });
-
-        Route::controller(AddressController::class)->prefix('address')->name('address.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-        });
-
-        Route::controller(CustomerController::class)->prefix('customer')->name('customer.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-            Route::post('kiem-duyet/{id}', 'postSupported')->name('supported');
-        });
-
-        Route::controller(SlideController::class)->prefix('slide')->name('slide.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('dang-ki', 'getCreate')->name('create');
-            Route::post('dang-ki-slide', 'postCreate')->name('createSlide');
-            Route::get('/get-image', 'getUrl')->name('getImage');
-        });
-
-        Route::controller(AddressController::class)->prefix('address')->name('address.')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('tao-moi', 'create')->name('create');
             Route::post('tao-moi', 'store');
@@ -140,28 +60,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('trang-thai/{id}', 'postStatus')->name('status');
         });
 
-        Route::controller(SolutionController::class)->prefix('solution')->name('solution.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-        });
-
-        Route::controller(RecruitmentController::class)->prefix('recruitment')->name('recruitment.')->group(function () {
-            Route::get('dang-tuyen', 'index')->name('index');
-            Route::get('tao-moi', 'create')->name('create');
-            Route::post('tao-moi', 'store');
-            Route::get('cap-nhap/{id}', 'edit')->name('update');
-            Route::post('cap-nhap/{id}', 'update');
-            Route::post('xoa/{id}', 'destroy')->name('delete');
-            Route::post('trang-thai/{id}', 'postStatus')->name('status');
-            Route::get('don-ung-tuyen', 'singleApply')->name('apply');
-            Route::post('trang-thai-apply/{id}', 'postStatusAppLy')->name('statusApply');
-            Route::get('/user_profiles/{id}', 'showFileApply')->name('show');
-        });
     });
 });
 
