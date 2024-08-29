@@ -172,12 +172,42 @@
 
                 var isLoggedIn = "{{ Auth::check() ? 'true' : 'false' }}";
 
+                // function callAddPointApi() {
+                //     if (!isLoggedIn) {
+                //         return;
+                //     }
+                //     $.ajax({
+                //         url: 'http://127.0.0.1:8000/add-point',
+                //         type: 'POST',
+                //         data: {
+                //             id: "{{ $id }}"
+                //         },
+                //         headers: {
+                //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                //         },
+                //         success: function(response) {
+                //             if (response.status == true) {
+                //                 var formattedNumber = response.cash.toLocaleString('vi-VN');
+                //                 $('.user_point').text(formattedNumber);
+                //                 console.log('API called successfully:', response.cash);
+                //             }
+                //         },
+                //         error: function(xhr) {
+                //             console.log('API call failed:', xhr.responseText);
+                //         }
+                //     });
+                // }
+
                 function callAddPointApi() {
                     if (!isLoggedIn) {
                         return;
                     }
+
+                    var baseUrl = window.location.origin; // Lấy URL gốc của trang hiện tại
+                    var apiUrl = baseUrl + '/add-point'; // Ghép với đường dẫn API
+
                     $.ajax({
-                        url: 'http://127.0.0.1:8000/add-point',
+                        url: apiUrl,
                         type: 'POST',
                         data: {
                             id: "{{ $id }}"
