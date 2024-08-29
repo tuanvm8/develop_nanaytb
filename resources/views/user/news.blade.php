@@ -1,7 +1,6 @@
 @extends('user.main')
 @section('templateContent')
-
-<main class="mb-5">
+    <main class="mb-5">
         <div class="head_page">
             <div class="container">
 

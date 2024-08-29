@@ -73,7 +73,7 @@ class UserController extends Controller
             return redirect()->route('admin.user.index')->with('messageError', config('message.update_failed'));
         }
 
-        if($request->password) {
+        if ($request->password) {
             $data = [
                 'username' => $request->username,
                 'email' => $request->email,
@@ -94,10 +94,9 @@ class UserController extends Controller
             DB::beginTransaction();
             $user->update($data);
             DB::commit();
-            
+
             return redirect()->route('admin.user.index')->with('messageSuccess', config('message.update_success'));
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollBack();
             Log::error($th);
             return redirect()->route('admin.user.update', ['id' => $id])->with('messageError', config('message.update_failed'));

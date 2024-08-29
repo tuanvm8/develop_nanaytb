@@ -3,11 +3,14 @@
         <div class="row g-4">
             <div class="col-lg-3">
                 <a href="index.html" title="KIEMTIENYOUTUBE" class="logo_f">
-                    <img style="height: 65px;" src="{{ asset('asset/images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg') }}" alt="KIEMTIENYOUTUBE" />
+                    <img style="height: 65px;"
+                        src="{{ asset('asset/images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg') }}"
+                        alt="KIEMTIENYOUTUBE" />
                 </a>
 
                 <div class="cotnent-f">
-                    <p>Nhận điểm thưởng hằng ng&agrave;y khi xem video v&agrave; nhận ngay kho kiến thức khi đăng k&yacute; t&agrave;i khoản trị gi&aacute; rất cao từ Bậc thầy Phan Anh.</p>
+                    <p>Nhận điểm thưởng hằng ng&agrave;y khi xem video v&agrave; nhận ngay kho kiến thức khi đăng
+                        k&yacute; t&agrave;i khoản trị gi&aacute; rất cao từ Bậc thầy Phan Anh.</p>
                 </div>
 
                 <div class="mxh_f">
@@ -28,7 +31,7 @@
                 <div class="box visited">
                     <p><span class="v1">_dangtruycap:</span> 15</p>
                     <!-- <p><span class="v2">_trongngay:</span> </p>
-	<p><span class="v3">_trongthang:</span> </p> -->
+ <p><span class="v3">_trongthang:</span> </p> -->
                     <p><span class="v3">_tongtruycap:</span> </p>
                 </div>
             </div>

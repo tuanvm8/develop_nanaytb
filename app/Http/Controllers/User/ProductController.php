@@ -73,7 +73,7 @@ class ProductController extends Controller
                     $addLog->user_name = $user->username;
                     $addLog->save();
 
-                    $cash +=$product->point;
+                    $cash += $product->point;
                     $status = true;
                     User::where('id', $user->id)->update(['point' => $cash]);
                 }

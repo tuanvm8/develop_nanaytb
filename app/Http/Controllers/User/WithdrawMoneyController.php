@@ -37,7 +37,7 @@ class WithdrawMoneyController extends Controller
                 'branch.required' => 'Chi nhánh không được để trống.',
                 'branch.max' => 'Chi nhánh không được vượt quá 255 ký tự.',
             ];
-            
+
             $request->validate([
                 'point' => 'required|numeric|min:1000000|max:99999999999',
                 'account_number' => 'required|digits_between:3,30',
@@ -48,7 +48,7 @@ class WithdrawMoneyController extends Controller
             $user = Auth::user();
             $cash = $user->point;
             $text = 'Số tiền không đủ để thực hiện yêu cầu.';
-            if($user->point >= 1000000){
+            if ($user->point >= 1000000) {
                 $items = new \App\Models\WithdrawMoney();
                 $items->user_id = $user->id;
                 $items->point = $request->point;
@@ -60,11 +60,10 @@ class WithdrawMoneyController extends Controller
                 User::where('id', $user->id)->update(['point' => $cash]);
                 $text = 'Gửi yêu cầu rút tiền thành công.';
             }
-            
+
             return back()->withErrors([
                 'msg' => $text
             ]);
-
         } else {
             return back()->withErrors([
                 'msg' => 'Bạn cần đăng nhập để thực hiện rút tiền.',

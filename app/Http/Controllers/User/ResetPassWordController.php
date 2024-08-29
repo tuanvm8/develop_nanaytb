@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Http\Requests\User\VeryFileEmailRequest;
 use App\Mail\UserMail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +21,7 @@ class ResetPassWordController extends Controller
         return view('user.forgot_password');
     }
 
-    public function postForgotPassword(VeryFileEmailRequest $request) 
+    public function postForgotPassword(VeryFileEmailRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -36,26 +35,26 @@ class ResetPassWordController extends Controller
 
             $user->forgot_url = Str::random(64);
             $user->save();
-    
+
             Mail::to($user->email)->send(new UserMail($user->forgot_url, $user->username));
-    
+
             DB::commit();
-            
+
             return back()->with('messageSuccess', config('message.send_success'));
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th);
-           return redirect()->route('admin.resetPassword.create')->with('messageError', config('message.send_error'));
+            return redirect()->route('admin.resetPassword.create')->with('messageError', config('message.send_error'));
         }
     }
 
-    public function showResetPasswordForm($forgot_url) 
+    public function showResetPasswordForm($forgot_url)
     {
         return view('user.resetPasswords.check-pass-word', ['forgot_url' => $forgot_url]);
     }
 
-    public function submitResetPasswordForm(UpdatePasswordRequest $request) 
-    { 
+    public function submitResetPasswordForm(UpdatePasswordRequest $request)
+    {
         try {
             DB::beginTransaction();
             $pass_token = Hash::make($request->password);
@@ -66,12 +65,11 @@ class ResetPassWordController extends Controller
 
             DB::commit();
             return redirect()->route('login.index')->with('messageSuccess', config('message.send_success'));
-
         } catch (\Throwable $th) {
             dd($th);
             DB::rollBack();
             Log::error($th);
-           return redirect()->route('resetPassword.getCreatePass')->with('messageError', config('message.send_error'));
+            return redirect()->route('resetPassword.getCreatePass')->with('messageError', config('message.send_error'));
         }
     }
 }

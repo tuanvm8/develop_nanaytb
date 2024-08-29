@@ -33,7 +33,8 @@
                     onblur="this.placeholder = 'Password Confirmation'">
 
                 <p><label for="pass">Nhập lại mật khẩu</label></p>
-                <p class="help is-danger text-danger" style="padding-right: 33px;">{{ $errors->first('repassword') }}</p>
+                <p class="help is-danger text-danger" style="padding-right: 33px;">{{ $errors->first('repassword') }}
+                </p>
                 <button type="submit" value="submit" class="primary-btn">Đặt lại mật khẩu</button>
             </div>
         </div>
