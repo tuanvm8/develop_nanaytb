@@ -3,7 +3,7 @@
         <div class="row g-4">
             <div class="col-lg-3">
                 <a href="index.html" title="KIEMTIENYOUTUBE" class="logo_f">
-                    <img style="height: 65px;" src="{{ asset('images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg') }}" alt="KIEMTIENYOUTUBE" />
+                    <img style="height: 65px;" src="{{ asset('asset/images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg') }}" alt="KIEMTIENYOUTUBE" />
                 </a>
 
                 <div class="cotnent-f">
@@ -13,7 +13,7 @@
                 <div class="mxh_f">
                     <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="Instagram.html" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <h4 class="title_f">Về chúng tôi</h4>
                 <div class="cotnent-f">
                     <ul>
-                        <li><a href="https://kiemtienyotube.com/gioi-thieu.html">Giới thiệu</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
                     </ul>
                 </div>
 
@@ -36,9 +36,9 @@
                 <h4 class="title_f">Hỗ trợ</h4>
                 <div class="cotnent-f">
                     <ul>
-                        <li><a href="http://xn--gii thiu lin h-0kb9243jia95a/">Hướng dẫn đăng k&yacute;</a></li>
-                        <li><a href="http://xn--gii thiu lin h-0kb9243jia95a/">Hướng dẫn kiếm tiền</a></li>
-                        <li><a href="http://xn--gii thiu lin h-0kb9243jia95a/">Hướng dẫn thanh to&aacute;n</a></li>
+                        <li><a href="#">Hướng dẫn đăng k&yacute;</a></li>
+                        <li><a href="#">Hướng dẫn kiếm tiền</a></li>
+                        <li><a href="#">Hướng dẫn thanh to&aacute;n</a></li>
                     </ul>
                 </div>
             </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\ProductController as UserProductController;
+use App\Http\Controllers\User\ResetPassWordController;
 use App\Http\Controllers\User\UserClient;
 use App\Http\Controllers\User\WithdrawMoneyController;
 use App\Http\Middleware\Authenticate;
@@ -66,5 +67,11 @@ Route::controller(UserClient::class)->group(function(){
     Route::get('/dang-xuat', 'logout')->name('logout');
     Route::get('/dang-ky', 'indexRegister')->name('register.index');
     Route::post('/dang-ky', 'postRegister')->name('register.post');
-    Route::get('/quen-mat-khau', function () { return view('user/forgot_password');})->name('forgot_password');
+});
+
+Route::controller(ResetPassWordController::class)->prefix('resetPassword')->name('resetPassword.')->group(function () {
+    Route::get('tao-moi', 'getForgotPassword')->name('create');
+    Route::post('tao-moi', 'postForgotPassword');
+    Route::get('reset-password/{token}', 'showResetPasswordForm')->name('getCreatePass');
+    Route::post('reset-password', 'submitResetPasswordForm')->name('reset-password');
 });

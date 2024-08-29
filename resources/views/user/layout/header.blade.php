@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-primary main-nav">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img style="height: 40px;" src="{{ asset('images/banner-quang-cao-youtube-ads.png') }}" alt="KIEMTIENYOUTUBE" />
+            <img style="height: 40px;" src="{{ asset('asset/images/banner-quang-cao-youtube-ads.png') }}" alt="KIEMTIENYOUTUBE" />
         </a>
         <div class="d-flex justify-content-end">
             @if (Auth::check())

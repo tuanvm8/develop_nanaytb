@@ -6,7 +6,7 @@
             <div class="col-lg-9">
                 <h2 class="title_home"> <span>Video hôm nay</span></h2>
                 <div class="row">
-                    @foreach ($items as $item)
+                    {{-- @foreach ($items as $item)
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="item_video">
                             <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
@@ -18,7 +18,7 @@
                             </h3>
                         </div>
                     </div>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
             <div class="col-lg-3">
@@ -42,7 +42,7 @@
                                     <label class="form-check-label" for="exampleCheckbox1"><span>Ghi nhớ đăng nhập</span></label>
                                 </div>
                             </div>
-                            <a href="{{ route('forgot_password') }}">Quên mật khẩu?</a>
+                            <a href="{{ route('resetPassword.create') }}">Quên mật khẩu?</a>
                         </div>
                         <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
                         <div class="text-center">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-12">
-                        <img class="img_gioithieu" src="images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg" alt="Kiếm tiền khi tham gia cùng  kiemtienyoutube.com " />
+                        <img class="img_gioithieu" src="asset/images/avata/DFCC1B02-2C31-4864-AB9C-C1256E9ABA02.jpg" alt="Kiếm tiền khi tham gia cùng  kiemtienyoutube.com " />
                     </div>
                     <div class="col-md-12">
                         <!--h1 class="gioithieu_title">Kiếm tiền khi tham gia cùng  kiemtienyoutube.com </h1-->

@@ -9,19 +9,19 @@
     <meta name="keywords" content="kiemtienyotube.com" />
     <meta name="description" content="kiemtienyotube.com" />
     <link href="#" rel="canonical" />
-    <link href="images/banner-quang-cao-youtube-ads.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="asset/images/banner-quang-cao-youtube-ads.png" rel="shortcut icon" type="image/x-icon" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="kiemtienyotube.com">
     <meta name="twitter:site" content="@https://nanaytb.com/">
     <meta name="twitter:description" content="kiemtienyotube.com">
-    <meta name="twitter:image" content="images/banner-quang-cao-youtube-ads.png">
+    <meta name="twitter:image" content="asset/images/banner-quang-cao-youtube-ads.png">
     <meta name="twitter:image:alt" content="kiemtienyotube.com">
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="index.html" />
     <meta property="og:title" content="kiemtienyotube.com" />
-    <meta property="og:image" content="images/banner-quang-cao-youtube-ads.png" />
+    <meta property="og:image" content="asset/images/banner-quang-cao-youtube-ads.png" />
     <meta property="og:description" content="kiemtienyotube.com" />
     <meta property="fb:page_id" content="f.me/blogtino/" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
