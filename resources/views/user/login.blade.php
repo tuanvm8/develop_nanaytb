@@ -31,7 +31,7 @@
                                             nhập</span></label>
                                 </div>
                             </div>
-                            <a href="{{ route('forgot_password') }}">Quên mật khẩu?</a>
+                            <a href="{{ route('resetPassword.create') }}">Quên mật khẩu?</a>
                         </div>
                         <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
 

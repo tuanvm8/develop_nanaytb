@@ -4,19 +4,7 @@
     <div class="head_page">
         <div class="container">
 
-            <ol vocab="https://schema.org/" typeof="BreadcrumbList" class="breadcrumb">
-                <li property="itemListElement" typeof="ListItem" class="breadcrumb-item">
-                    <a property="item" typeof="WebPage" href="index.html">
-                        <span property="name">Trang chủ</span></a>
-                    <meta property="position" content="1">
-                </li>
-
-                <li property="itemListElement" typeof="ListItem" class="breadcrumb-item active">
-                    <a property="item" typeof="WebPage" href="video-hom-nay.html">
-                        <span property="name">Video hôm nay</span></a>
-                    <meta property="position" content="2">
-                </li>
-            </ol>
+            <span><b>Trang chủ / Video hôm nay </b></span>
         </div>
     </div>
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -92,7 +80,7 @@
                                         <label class="form-check-label" for="exampleCheckbox1"><span>Ghi nhớ đăng nhập</span></label>
                                     </div>
                                 </div>
-                                <a href="{{ route('forgot_password') }}">Quên mật khẩu?</a>
+                                <a href="{{ route('resetPassword.create') }}">Quên mật khẩu?</a>
                             </div>
                             <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
                             <div class="text-center">

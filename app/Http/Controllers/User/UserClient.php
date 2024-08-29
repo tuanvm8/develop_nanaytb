@@ -31,21 +31,25 @@ class UserClient extends Controller
             'password' => 'required|min:6|max:50',
         ], $messages);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
-            if($request->login == 2){
-                return redirect()->route('today_video');
-            }else if($request->login == 4 && $request->id){
-                return redirect()->route('watch_videos', ['id' => $request->id]);
-            }else{
-                return redirect()->route('home');
+        try {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 2])) {
+                if($request->login == 2){
+                    return redirect()->route('today_video');
+                } else if($request->login == 4 && $request->id){
+                    return redirect()->route('watch_videos', ['id' => $request->id]);
+                }else {
+                    return redirect()->route('home');
+                }
             }
+    
+            return back()->withErrors([
+                'msg' => 'Email hoặc mật khẩu không đúng, hoặc tài khoản của bạn chưa được kích hoạt.',
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+         } catch (\Throwable $th) {
+            dd( $th->getMessage());
         }
-
-        return back()->withErrors([
-            'msg' => 'Email hoặc mật khẩu không đúng, hoặc tài khoản của bạn chưa được kích hoạt.',
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
     }
 
     public function logout(Request $request)
@@ -88,6 +92,7 @@ class UserClient extends Controller
             'mat_khau' => 'required|min:6|max:50',
             'mat_khau2' => 'required|same:mat_khau',
         ], $messages);
+
         try {
             $user = new \App\Models\User();
             $user->username = $request->ho_ten;
@@ -96,7 +101,8 @@ class UserClient extends Controller
             $user->password = Hash::make($request->mat_khau);
             $user->save();
             return back()->with('msg', 'Đăng ký thành công.');
-        }catch (\Illuminate\Database\QueryException $e) {
+        }catch (\Throwable $th) {
+            dd($th);
             return redirect()->back()->withErrors(['msg' => 'Có lỗi xảy ra. Vui lòng thử lại sau.']);
         }
     }
