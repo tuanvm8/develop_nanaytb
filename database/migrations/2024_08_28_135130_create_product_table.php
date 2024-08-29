@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
+            $table->string('videoId');
             $table->string('url')->nullable();
             $table->unsignedTinyInteger('point')->default(0);
             $table->date('date_product')->nullable();
@@ -28,6 +29,5 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
     }
 };

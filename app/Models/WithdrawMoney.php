@@ -5,17 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductDescription extends Model
+class WithdrawMoney extends Model
 {
     use HasFactory;
 
     public $timestamps = true;
-    protected $table = 'm_product_description';
-
+    protected $table = 'withdraw_money';
     protected $guarded = [];
-
-    public function product()
-{
-    return $this->belongsTo(Product::class);
-}
 }
