@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ProductController as UserProductController;
+use App\Http\Controllers\User\UserClient;
+use App\Http\Controllers\User\WithdrawMoneyController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +40,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('trang-thai/{id}', 'postStatus')->name('status');
         });
     });
+});
+
+Route::get('/gioi-thieu', function () { return view('user/introduction');})->name('introduction');
+Route::get('/tin-tuc', function () { return view('user/news');})->name('news');
+Route::get('/chinh-sach', function () { return view('user/policy');})->name('policy');
+
+
+Route::controller(WithdrawMoneyController::class)->group(function(){
+    Route::get('/rut-tien', 'index')->name('withdraw_money.index');
+    Route::post('/rut-tien', 'post')->name('withdraw_money.post');
+});
+
+Route::controller(UserProductController::class)->group(function(){
+    Route::get('/', 'home')->name('home');
+    Route::get('/video-hom-nay', 'today_video')->name('today_video');
+    Route::get('/xem-video/{id}', 'watch_videos')->name('watch_videos');
+    Route::post('/add-point', 'add_point');
+
+});
+
+Route::controller(UserClient::class)->group(function(){
+    Route::get('/dang-nhap', 'index')->name('login.index');
+    Route::post('/dang-nhap', 'postLogin')->name('login.post');
+    Route::get('/dang-xuat', 'logout')->name('logout');
+    Route::get('/dang-ky', 'indexRegister')->name('register.index');
+    Route::post('/dang-ky', 'postRegister')->name('register.post');
+    Route::get('/quen-mat-khau', function () { return view('user/forgot_password');})->name('forgot_password');
 });
