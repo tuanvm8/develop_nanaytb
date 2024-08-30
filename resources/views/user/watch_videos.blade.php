@@ -20,13 +20,12 @@
                                 </div>
                             @endif
                             <h1 class="title mt-4"
-                                style="border: none;text-transform: initial;font-size: 20px;margin-bottom: 0;">Máy bay
-                                côn trùng</h1>
+                                style="border: none;text-transform: initial;font-size: 20px;margin-bottom: 0;"></h1>
                             <div class="head d-flex justify-content-between mt-3 mb-4">
                                 <div>
                                     <span class="me-3"><i class="fa-regular fa-calendar-days me-2"></i>
                                         {{ $time }}</span>
-                                    <a href="video-hom-nay.html"><i class="fa-solid fa-tag me-2"></i> Video hôm nay</a>
+                                    <a href="#l"><i class="fa-solid fa-tag me-2"></i> Video hôm nay</a>
                                 </div>
 
                                 <div class="chiase">
@@ -51,17 +50,16 @@
                             </div>
                         </div>
                     </div>
+                    @if (!Auth::check())
+                        <div class="col-lg-3">
+                            <aside class="sidebar">
+                                <div class="widget recent-post">
+                                    <h5 class="widget-title">Bài viết nổi bật</h5>
 
-                    <div class="col-lg-3">
-                        <aside class="sidebar">
-                            <div class="widget recent-post">
-                                <h5 class="widget-title">Bài viết nổi bật</h5>
-
-                            </div>
-                        </aside>
-                        <div class="box-login" style="padding: 0;">
-                            <h1 class="title">Thành viên đăng nhập</h1>
-                            @if (!Auth::check())
+                                </div>
+                            </aside>
+                            <div class="box-login" style="padding: 0;">
+                                <h1 class="title">Thành viên đăng nhập</h1>
                                 <form method="POST" action="{{ route('login.post') }}" id="form-dangnhap">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $id }}">
@@ -93,38 +91,40 @@
                                             nhập</button>
                                     </div>
                                 </form>
-                            @endif
-                        </div>
-                        <div style="position: relative;">
-                            <span
-                                style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
-                            <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
-                                frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <h2 class="title_home mt-5">
-                    <span>Video khác</span>
-                </h2>
-                <div class="swiper swiper_video">
-                    <div class="swiper-wrapper">
-                        @foreach ($itemArr as $item)
-                            <div class="swiper-slide item_video">
-                                <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
-                                    <i class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
-                                    <img src="{{ $item->image }}" alt="Đại nỗi loạn" />
-                                </a>
-                                <h3>
-                                    <a href="{{ route('watch_videos', ['id' => $item->id]) }}"
-                                        title="Đại nỗi loạn">{{ $item->title }}</a>
-                                </h3>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
 
+                            </div>
+                            <div style="position: relative;">
+                                <span
+                                {{-- {{ $url }} --}}
+                                    style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
+                                <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
+                                    frameborder="0" allowfullscreen></iframe>
+                            </div>
+                    @endif
+                </div>
             </div>
+            <h2 class="title_home mt-5">
+                <span>Video khác</span>
+            </h2>
+            <div class="swiper swiper_video">
+                <div class="swiper-wrapper">
+                    @foreach ($itemArr as $item)
+                        <div class="swiper-slide item_video">
+                            <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
+                                <i class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
+                                <img src="{{ $item->image }}" alt="Đại nỗi loạn" />
+                            </a>
+                            <h3>
+                                <a href="{{ route('watch_videos', ['id' => $item->id]) }}"
+                                    title="Đại nỗi loạn">{{ $item->title }}</a>
+                            </h3>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
         </div>
         <style>
             #player {

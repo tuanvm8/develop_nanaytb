@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -87,21 +88,27 @@ class UserClient extends Controller
 
         $request->validate([
             'ho_ten' => 'required|min:5|max:50',
-            'email' => 'required|email|max:150|unique:users,email',
-            'dien_thoai' => 'required|regex:/^0[0-9]{9}$/|unique:users,phone',
+            'email' => 'required|email|max:150|unique:m_user,email',
+            'dien_thoai' => 'required|regex:/^0[0-9]{9}$/|unique:m_user,phone',
             'mat_khau' => 'required|min:6|max:50',
             'mat_khau2' => 'required|same:mat_khau',
         ], $messages);
 
         try {
+            DB::beginTransaction();
+            
             $user = new \App\Models\User();
             $user->username = $request->ho_ten;
             $user->email = $request->email;
             $user->phone = $request->dien_thoai;
             $user->password = Hash::make($request->mat_khau);
             $user->save();
-            return back()->with('msg', 'Đăng ký thành công.');
+            
+            DB::commit();
+
+            return redirect()->route('home')->with('messageSuccess', config('message.create_success'));
         } catch (\Throwable $th) {
+            DB::rollBack(); 
             return redirect()->back()->withErrors(['msg' => 'Có lỗi xảy ra. Vui lòng thử lại sau.']);
         }
     }
