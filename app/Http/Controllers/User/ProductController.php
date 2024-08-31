@@ -31,14 +31,25 @@ class ProductController extends Controller
     }
     public function today_video()
     {
+        $storage = app('firebase.storage');
+        $defaultBucket = $storage->getBucket();
+
         $items = Product::whereDate('date_product', today())
             ->orderBy('date_product', 'desc')
             ->limit(5)
             ->get();
+
+        foreach ($items as $imageName) {
+            $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
+            $imageName->image = $signedUrl;
+        }
         return view('user.today_video', ['items' => $items]);
     }
     public function watch_videos($id)
     {
+        $storage = app('firebase.storage');
+        $defaultBucket = $storage->getBucket();
+
         $item = Product::whereDate('date_product', today())
             ->where('id', $id)
             ->first();
@@ -48,6 +59,11 @@ class ProductController extends Controller
             ->orderBy('date_product', 'desc')
             ->limit(4)
             ->get();
+
+        foreach ($itemArr as $imageName) {
+            $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
+            $imageName->image = $signedUrl;
+        }
 
         // Kiểm tra nếu có bản ghi và lấy giá trị cột url
         $url = $item ? $item->url : null;
