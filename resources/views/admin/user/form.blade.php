@@ -1,4 +1,4 @@
-@section('headerTitle', 'Quản trị - ' . ($isUpdate ? 'Cập nhập' : 'Tạo mới') . ' nhân sự')
+@section('headerTitle', 'Quản trị - ' . ($isUpdate ? 'Cập nhập' : 'Tạo mới') . 'người dùng')
 @extends('admin.layout')
 @section('templateContent')
     <div class="content-header">
@@ -10,7 +10,7 @@
                             <a href="#" class="text-decoration-none">Trang chủ </a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a href="{{ route('admin.user.index') }}" class="text-decoration-none">Danh sách nhân sự</a>
+                            <a href="{{ route('admin.user.index') }}" class="text-decoration-none">Danh sách người dùng</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             {{ $isUpdate ? 'Cập nhập' : 'Tạo mới' }}
@@ -23,7 +23,7 @@
     <div class="bg-white mx-3 p-3 shadow-sm">
         @include('admin.core.alert')
         <div class="d-flex justify-content-between mb-3">
-            <h1 class="fs-3 m-0">{{ $isUpdate ? 'Cập nhập' : 'Tạo mới' }} nhân sự</h1>
+            <h1 class="fs-3 m-0">{{ $isUpdate ? 'Cập nhập' : 'Tạo mới' }} người dùng</h1>
             <a href="{{ route('admin.user.index') }}" class="btn btn-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                     class="bi bi-list-ol" viewBox="0 0 16 16">

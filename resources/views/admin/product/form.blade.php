@@ -57,6 +57,12 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
+                        <label for="videoId" class="form-label">Video ID<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="videoId" name="videoId"
+                            value="{{ old('videoId') ?? (isset($product) ? $product->videoId : '') }}">
+                        <p class="help is-danger text-danger name-cate">{{ $errors->first('videoId') }}</p>
+                    </div>
+                    <div class="col-6">
                         <label for="date_product" class="form-label">Ngày tạo<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="datepicker" name="date_product"
                             value="{{ old('date_product') ?? (isset($product) ? $product->date_product : '') }}" readonly>

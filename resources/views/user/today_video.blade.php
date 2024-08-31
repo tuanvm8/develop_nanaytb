@@ -42,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                @if (!Auth::check())
                 <div class="col-lg-3">
                     <aside class="sidebar">
                         <div class="widget recent-post">
@@ -51,7 +52,7 @@
                     </aside>
                     <div class="box-login" style="padding: 0;">
                         <h1 class="title" style="">Thành viên đăng nhập</h1>
-                        @if (!Auth::check())
+                        
                             <form method="POST" action="{{ route('login.post') }}" id="form-dangnhap">
                                 @csrf
                                 <div class="mb-3">
@@ -82,7 +83,6 @@
                                         nhập</button>
                                 </div>
                             </form>
-                        @endif
                     </div>
                     <div style="position: relative;">
                         <span
@@ -91,6 +91,8 @@
                             src="https://www.youtube.com/embed/ndCBhq5MVOU?autoplay=1&amp;mute=1&amp;loop=1" frameborder="0"
                             allowfullscreen></iframe>
                     </div>
+                    @endif
+
                 </div>
             </div>
 

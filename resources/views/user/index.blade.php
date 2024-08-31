@@ -11,13 +11,12 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="item_video">
                                     <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
-                                        <i
-                                            class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
-                                        <img src="{{ $item->image }}" alt="Động vật hoang dã" />
+                                        <i class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
+                                        <img style="width:100%; height: 225px;" src="{{ $item->image }}" alt="Firebase Image" />
                                     </a>
                                     <h3>
                                         <a href="{{ route('watch_videos', ['id' => $item->id]) }}"
-                                            title="Động vật hoang dã">{{ $item->title }}</a>
+                                            title="{{ $item->title }}">{{ $item->title }}</a>
                                     </h3>
                                 </div>
                             </div>

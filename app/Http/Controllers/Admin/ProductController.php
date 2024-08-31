@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\CreateRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class ProductController extends Controller
         $storage = app('firebase.storage');
         $defaultBucket = $storage->getBucket();
 
-        $products =  Product::get();
+        $products =  Product::orderBy('date_product', 'desc')->get();
 
         foreach ($products as $imageName) {
             $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
@@ -55,6 +56,7 @@ class ProductController extends Controller
                     'title' => $request->title,
                     'url' => $request->url,
                     'image' => $nameImg,
+                    'videoId' => $request->videoId,
                     'date_product' => $dateProduct,
                     'status' =>  $request->status,
                 ]);
@@ -95,7 +97,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateRequest $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         try {
             DB::beginTransaction();
@@ -138,7 +140,6 @@ class ProductController extends Controller
 
             return redirect()->route('admin.product.index')->with('messageSuccess', config('message.update_success'));
         } catch (Throwable $th) {
-            dd();
             DB::rollback();
             Log::error($th);
             return redirect()->route('admin.product.update', $id)->with('messageError', config('message.update_failed'));
@@ -173,7 +174,7 @@ class ProductController extends Controller
         if (!$product) return back()->with('messageError', config('message.data_not_found'));
         try {
             DB::beginTransaction();
-            $product->status = ($product->status == 1 ? 2 : 1);
+            $product->status = ($product->status == 2 ? 1 : 2);
             $product->save();
             DB::commit();
             return redirect()->route('admin.product.index')->with('messageSuccess', config('message.status_success'));

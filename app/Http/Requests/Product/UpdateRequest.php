@@ -4,7 +4,7 @@ namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
             'date_product' => 'required',
             'url' => 'required',
             'videoId' => 'required',
-            'image' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' =>  'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 
@@ -38,7 +38,7 @@ class CreateRequest extends FormRequest
             'date_product.required' => 'Ngày tạo không được để trống.',
             'url.required' => 'Link youtube không được để trống.',
             'videoId.required' => 'Video ID không được để trống.',
-            'image.required' => 'Ảnh không được để trống.',
+            'image.nullable' => 'Ảnh không được để trống.',
             'image.max' => 'Kích thước hình ảnh không được vượt quá 2048 KB.',
             'image.mimes' => 'Ảnh không đúng định dạng, chỉ chấp nhận các định dạng jpeg, png, jpg, gif.',
             'image.image' => 'Tệp tải lên phải là một hình ảnh.',

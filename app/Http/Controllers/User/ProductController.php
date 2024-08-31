@@ -15,10 +15,18 @@ class ProductController extends Controller
 {
     public function home()
     {
+        $storage = app('firebase.storage');
+        $defaultBucket = $storage->getBucket();
+        
         $items = Product::whereDate('date_product', today())
             ->orderBy('date_product', 'desc')
             ->limit(5)
             ->get();
+        foreach ($items as $imageName) {
+            $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
+            $imageName->image = $signedUrl;
+        }
+
         return view('user.index', ['items' => $items]);
     }
     public function today_video()

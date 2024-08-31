@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('videoId');
             $table->string('url')->nullable();
-            $table->unsignedTinyInteger('point')->default(0);
+            $table->unsignedInteger('point')->default(10000);
             $table->date('date_product')->nullable();
             $table->unsignedTinyInteger('status')->default(1);
             $table->timestamps();
