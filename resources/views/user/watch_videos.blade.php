@@ -93,13 +93,15 @@
                                 </form>
 
                             </div>
-                            <div style="position: relative;">
-                                <span
-                                {{-- {{ $url }} --}}
-                                    style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
-                                <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
-                                    frameborder="0" allowfullscreen></iframe>
-                            </div>
+                            @if (!empty($url))
+                                <div style="position: relative;">
+                                    <span style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
+                                    <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
+                                        frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            @else 
+                                <p>Video không tồn tại hoặc không thể tải. </p>
+                            @endif
                     @endif
                 </div>
             </div>

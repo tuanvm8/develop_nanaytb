@@ -30,11 +30,11 @@
                                         <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
                                             <i
                                                 class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
-                                            <img src="{{ $item->image }}" alt="Động vật hoang dã" />
+                                            <img src="{{ $item->image }}" alt="Firebase Image" />
                                         </a>
                                         <h3>
                                             <a href="{{ route('watch_videos', ['id' => $item->id]) }}"
-                                                title="Động vật hoang dã">{{ $item->title }}</a>
+                                                title="{{ $item->title }}">{{ $item->title }}</a>
                                         </h3>
                                     </div>
                                 </div>
