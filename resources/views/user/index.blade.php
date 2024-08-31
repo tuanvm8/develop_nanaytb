@@ -53,7 +53,7 @@
                                 </div>
                                 <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-main" name="login" value="1">Đăng
+                                    <button type="submit" class="btn btn-main" name="login" value="1">Đăngffff
                                         nhập</button>
                                 </div>
                             </form>
@@ -107,6 +107,23 @@
                         }
                     }
                 });
+                // $("#form-dangnhap").on('submit', function(event) {
+                //     event.preventDefault(); // Ngăn chặn hành động submit mặc định
+
+                //     $.ajax({
+                //         url: $(this).attr('action'),
+                //         method: 'POST',
+                //         data: $(this).serialize(),
+                //         success: function(response) {
+                //             // Xử lý khi đăng nhập thành công
+                //             location.reload(); // Tải lại trang
+                //         },
+                //         error: function(xhr) {
+                //             // Xử lý khi có lỗi
+                //             alert('Đăng nhập không thành công. Vui lòng thử lại.');
+                //         }
+                //     });
+                // });
             });
         </script>
     </main>

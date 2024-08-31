@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{ env('APP_NAME') }} - @yield('headerTitle')</title>
-        <link rel="icon" type="image/png" href="{{ url('asset/asset/images/banner-quang-cao-youtube-ads.png') }}">
+        <link rel="icon" type="image/png" href="{{ url('asset/images/banner-quang-cao-youtube-ads.png') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">

@@ -9,13 +9,13 @@
     <meta name="keywords" content="kiemtienyotube.com" />
     <meta name="description" content="kiemtienyotube.com" />
     <link href="#" rel="canonical" />
-    <link href="asset/images/banner-quang-cao-youtube-ads.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ url('asset/images/banner-quang-cao-youtube-ads.png') }}" rel="shortcut icon" type="image/x-icon" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="kiemtienyotube.com">
     <meta name="twitter:site" content="@https://nanaytb.com/">
     <meta name="twitter:description" content="kiemtienyotube.com">
-    <meta name="twitter:image" content="asset/images/banner-quang-cao-youtube-ads.png">
+    <meta name="twitter:image" content="asset/asset/images/banner-quang-cao-youtube-ads.png">
     <meta name="twitter:image:alt" content="kiemtienyotube.com">
     <!-- Open Graph -->
     <meta property="og:type" content="website">

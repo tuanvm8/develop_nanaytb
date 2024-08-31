@@ -7,7 +7,6 @@
                 <span><b>Trang chủ / Video hôm nay </b></span>
             </div>
         </div>
-        <script src="https://www.youtube.com/iframe_api"></script>
         <div class="container">
             <div class="video-home">
                 <div class="row">
@@ -19,6 +18,11 @@
                                     <i class="fa-solid fa-video-slash"></i> Vui lòng đăng ký thành viên để xem video
                                 </div>
                             @endif
+
+                            <div id="notification" class="alert alert-success text-center" style="display: none;">
+                                Thời gian nhiệm vụ đã kết thúc. Chúc mừng bạn đã được cộng 10.000đ vào tài khoản
+                            </div>
+
                             <h1 class="title mt-4"
                                 style="border: none;text-transform: initial;font-size: 20px;margin-bottom: 0;"></h1>
                             <div class="head d-flex justify-content-between mt-3 mb-4">
@@ -91,7 +95,6 @@
                                             nhập</button>
                                     </div>
                                 </form>
-
                             </div>
                             @if (!empty($url))
                                 <div style="position: relative;">
@@ -113,7 +116,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($itemArr as $item)
                         <div class="swiper-slide item_video">
-                            <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
+                            <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video video-link">
                                 <i class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
                                 <img style="width:100%; height: 225px;" src="{{ $item->image }}" alt="Firebase Image" />
                             </a>
@@ -139,100 +142,75 @@
             </style>
 
             <script>
-                var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                document.addEventListener("DOMContentLoaded", function() {
+                    var tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                var player;
-                var timeSpent = 0;
-                var checkInterval;
+                    var player;
+                    var timeSpent = 0;
+                    var checkInterval;
 
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        height: '450',
-                        width: '640',
-                        videoId: "{{ $videoId }}",
-                        events: {
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                }
-
-                function onPlayerStateChange(event) {
-                    if (event.data == YT.PlayerState.PLAYING) {
-                        checkInterval = setInterval(function() {
-                            timeSpent += 1;
-                            if (timeSpent >= 15) {
-                                callAddPointApi();
-                                clearInterval(checkInterval);
+                    window.onYouTubeIframeAPIReady = function() {
+                        player = new YT.Player('player', {
+                            height: '450',
+                            width: '640',
+                            videoId: "{{ $videoId }}",
+                            events: {
+                                'onStateChange': onPlayerStateChange
                             }
-                        }, 1000);
-                    } else {
-                        clearInterval(checkInterval);
-                    }
-                }
+                        });
+                    };
 
-                var isLoggedIn = "{{ Auth::check() ? 'true' : 'false' }}";
-
-                // function callAddPointApi() {
-                //     if (!isLoggedIn) {
-                //         return;
-                //     }
-                //     $.ajax({
-                //         url: 'http://127.0.0.1:8000/add-point',
-                //         type: 'POST',
-                //         data: {
-                //             id: "{{ $id }}"
-                //         },
-                //         headers: {
-                //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //         },
-                //         success: function(response) {
-                //             if (response.status == true) {
-                //                 var formattedNumber = response.cash.toLocaleString('vi-VN');
-                //                 $('.user_point').text(formattedNumber);
-                //                 console.log('API called successfully:', response.cash);
-                //             }
-                //         },
-                //         error: function(xhr) {
-                //             console.log('API call failed:', xhr.responseText);
-                //         }
-                //     });
-                // }
-
-                function callAddPointApi() {
-                    if (!isLoggedIn) {
-                        return;
+                    function onPlayerStateChange(event) {
+                        if (event.data == YT.PlayerState.PLAYING) {
+                            checkInterval = setInterval(function() {
+                                timeSpent += 1;
+                                if (timeSpent >= 15) {
+                                    callAddPointApi();
+                                    clearInterval(checkInterval);
+                                }
+                            }, 1000);
+                        } else {
+                            clearInterval(checkInterval);
+                        }
                     }
 
-                    var baseUrl = window.location.origin; // Lấy URL gốc của trang hiện tại
-                    var apiUrl = baseUrl + '/add-point'; // Ghép với đường dẫn API
+                    var isLoggedIn = "{{ Auth::check() ? 'true' : 'false' }}";
 
-                    $.ajax({
-                        url: apiUrl,
-                        type: 'POST',
-                        data: {
-                            id: "{{ $id }}"
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function(response) {
-                            if (response.status == true) {
-                                var formattedNumber = response.cash.toLocaleString('vi-VN');
-                                $('.user_point').text(formattedNumber);
-                                console.log('API called successfully:', response.cash);
-                            }
-                        },
-                        error: function(xhr) {
-                            console.log('API call failed:', xhr.responseText);
+                    function callAddPointApi() {
+                        if (!isLoggedIn) {
+                            return;
                         }
-                    });
-                }
+
+                        var baseUrl = window.location.origin;
+                        var apiUrl = baseUrl + '/add-point';
+
+                        $.ajax({
+                            url: apiUrl,
+                            type: 'POST',
+                            data: {
+                                id: "{{ $id }}"
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                if (response.status == true) {
+                                    var formattedNumber = response.cash.toLocaleString('vi-VN');
+                                    $('.user_point').text(formattedNumber);
+                                    $('#notification').show();
+                                    console.log('API called successfully:', response.cash);
+                                }
+                            },
+                            error: function(xhr) {
+                                console.log('API call failed:', xhr.responseText);
+                            }
+                        });
+                    }
+                });
             </script>
-
-
             <script>
                 $(document).ready(function() {
                     $("#form-dangnhap").validate({
