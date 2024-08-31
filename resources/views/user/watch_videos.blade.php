@@ -93,13 +93,16 @@
                                 </form>
 
                             </div>
-                            <div style="position: relative;">
-                                <span
-                                {{-- {{ $url }} --}}
-                                    style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
-                                <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
-                                    frameborder="0" allowfullscreen></iframe>
-                            </div>
+                            @if (!empty($url))
+                                <div style="position: relative;">
+                                    <span
+                                        style="position: absolute;width: 100%;height: 100%;background-color: #fff;left: 0;right: 0;"></span>
+                                    <iframe style="width: 100%;" width="560" height="315" src="{{ asset($url) }}"
+                                        frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            @else
+                                <p>Video không tồn tại hoặc không thể tải.</p>
+                            @endif
                     @endif
                 </div>
             </div>
@@ -112,11 +115,11 @@
                         <div class="swiper-slide item_video">
                             <a href="{{ route('watch_videos', ['id' => $item->id]) }}" class="box_video">
                                 <i class="fa-brands fa-youtube position-absolute top-50 start-50 translate-middle"></i>
-                                <img src="{{ $item->image }}" alt="Đại nỗi loạn" />
+                                <img style="width:100%; height: 225px;" src="{{ $item->image }}" alt="Firebase Image" />
                             </a>
                             <h3>
                                 <a href="{{ route('watch_videos', ['id' => $item->id]) }}"
-                                    title="Đại nỗi loạn">{{ $item->title }}</a>
+                                    title="{{ $item->title }}">{{ $item->title }}</a>
                             </h3>
                         </div>
                     @endforeach
