@@ -106,7 +106,7 @@ class UserClient extends Controller
             
             DB::commit();
 
-            return redirect()->route('home')->with('messageSuccess', config('message.create_success'));
+            return redirect()->route('register.index')->with('messageSuccess', 'Cảm ơn bạn đã đăng ký. Vui lòng thanh toán để được kích hoạt tài khoản');
         } catch (\Throwable $th) {
             DB::rollBack(); 
             return redirect()->back()->withErrors(['msg' => 'Có lỗi xảy ra. Vui lòng thử lại sau.']);

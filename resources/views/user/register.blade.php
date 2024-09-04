@@ -9,8 +9,10 @@
                             <img src="{{ asset('images/image-login.png') }}" alt=""
                                 style="height: 180px;object-fit: contain;margin-bottom: 30px;" />
                         </div>
+
+                        @include('admin.core.alert')
                         <h1 class="title">Đăng ký tài khoản</h1>
-                        <p class="des">Thông tin đăng ký sẽ được xác nhận trước khi hoạt động</p>
+                        <p class="des">Thông tin đăng ký sẽ được xác nhận trước khi hoạt động bạn hãy kiểm tra email.</p>
                         <form method="post" action="{{ route('register.post') }}" id="form-dangky">
                             @csrf
                             <div class="mb-3">
