@@ -53,8 +53,7 @@
                                 </div>
                                 <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-main" name="login" value="1">Đăngffff
-                                        nhập</button>
+                                    <button type="submit" class="btn btn-main" name="login" value="1">Đăng nhập</button>
                                 </div>
                             </form>
                         @endif

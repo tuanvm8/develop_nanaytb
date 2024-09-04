@@ -41,11 +41,6 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation(): void
-    {
-        $this->request->set('price', trim(str_replace('.', '', $this->price)));
-    }
-
     protected function failedValidation($validator) {
         $response = redirect($this->getRedirectUrl())
                         ->withErrors($validator->errors(), $this->errorBag)

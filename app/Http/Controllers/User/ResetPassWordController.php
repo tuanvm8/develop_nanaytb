@@ -57,19 +57,23 @@ class ResetPassWordController extends Controller
     {
         try {
             DB::beginTransaction();
-            $pass_token = Hash::make($request->password);
 
-            DB::table('m_user')->update([
-                'password' => $pass_token
-            ]);
+            $user = User::where('forgot_url', $request->forgot_url)->first();
+            if (!$user) {
+                return redirect()->route('resetPassword.getCreatePass')->with('messageError', 'Link không hợp lệ hoặc đã hết hạn.');
+            }
+            $user->password = Hash::make($request->password);
+            $user->forgot_url = null;
+            $user->save();
 
             DB::commit();
-            return redirect()->route('login.index')->with('messageSuccess', config('message.send_success'));
+
+            return redirect()->route('login.index')->with('messageSuccess', 'Mật khẩu đã được thay đổi thành công.');
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollBack();
             Log::error($th);
-            return redirect()->route('resetPassword.getCreatePass')->with('messageError', config('message.send_error'));
+
+            return redirect()->route('resetPassword.getCreatePass')->with('messageError', 'Đã có lỗi xảy ra, vui lòng thử lại.');
         }
     }
 }
