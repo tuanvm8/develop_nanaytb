@@ -26,16 +26,19 @@ class DashboardController extends Controller
         }
 
         $validatedData = $validator->validated();
-
-        if (Auth::guard('admin')->attempt(['username' => $validatedData['username'], 'password' => $validatedData['password']])) {
-            if (Auth::guard('admin')->user()->status == 1) {
-                return redirect()->route('admin.dashboard.index');
-            } else {
-                Auth::guard('admin')->logout();
-                return redirect()->route('admin.login')->with('messageError', 'Bạn không có quyền truy cập');;
+        try {
+            if (Auth::guard('admin')->attempt(['username' => $validatedData['username'], 'password' => $validatedData['password']])) {
+                if (Auth::guard('admin')->user()->status == 1) {
+                    return redirect()->route('admin.dashboard.index');
+                } else {
+                    Auth::guard('admin')->logout();
+                    return redirect()->route('admin.login')->with('messageError', 'Bạn không có quyền truy cập');;
+                }
             }
+        } catch (\Throwable $th) {
+            dd($th->getMessage());      
+            return redirect()->route('admin.login')->with('messageError',  config('message.login_failed'))->withInput();
         }
-        return redirect()->route('admin.login')->with('messageError',  config('message.login_failed'))->withInput();
     }
 
     public function getLogOut()

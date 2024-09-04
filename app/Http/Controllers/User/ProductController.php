@@ -22,6 +22,17 @@ class ProductController extends Controller
             ->orderBy('date_product', 'desc')
             ->limit(5)
             ->get();
+
+        if (Auth::check()) {
+            $items = Product::whereDate('date_product', today())
+                ->whereNotIn('id', function ($query) {
+                    $query->select('product_id')
+                        ->from('watch_video_history');
+                })
+                ->orderBy('date_product', 'desc')
+                ->limit(5)
+                ->get();
+        }
         foreach ($items as $imageName) {
             $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
             $imageName->image = $signedUrl;
@@ -38,6 +49,16 @@ class ProductController extends Controller
             ->orderBy('date_product', 'desc')
             ->limit(5)
             ->get();
+        if (Auth::check()) {
+            $items = Product::whereDate('date_product', today())
+                ->whereNotIn('id', function ($query) {
+                    $query->select('product_id')
+                        ->from('watch_video_history');
+                })
+                ->orderBy('date_product', 'desc')
+                ->limit(5)
+                ->get();
+        }
 
         foreach ($items as $imageName) {
             $signedUrl = $defaultBucket->object($imageName->image)->signedUrl(now()->addHours(5));
@@ -47,6 +68,14 @@ class ProductController extends Controller
     }
     public function watch_videos($id)
     {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $history = WatchVideoHistory::where('product_id',  $id)
+                ->where('user_id', $user->id)
+                ->first();
+                if($history)return redirect()->route('home');
+        }
+
         $storage = app('firebase.storage');
         $defaultBucket = $storage->getBucket();
 

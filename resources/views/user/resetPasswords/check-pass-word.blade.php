@@ -17,7 +17,8 @@
     </script>
     <form class="row" action="{{ route('resetPassword.reset-password') }}" method="POST">
         @csrf
-        {{-- @include('admin.core.alert') --}}
+
+        <input type="hidden" name="forgot_url" value="{{ $forgot_url }}">
         <div class="row">
             <img class="profile-img" src=""alt="">
             <div class="form-group">
