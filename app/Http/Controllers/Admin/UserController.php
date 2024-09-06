@@ -127,7 +127,7 @@ class UserController extends Controller
         if (!$user) return back()->with('messageError', config('message.data_not_found'));
         try {
             DB::beginTransaction();
-            $user->status = ($user->status == 2 ? 1 : 2);
+            $user->status = ($user->status == 1 ? 2 : 1);
             $user->save();
             event(new UserStatusChanged($user));
             DB::commit();

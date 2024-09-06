@@ -51,7 +51,7 @@
                             <td>{{ $user->username }}</td>
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">{{ $user->phone }}</td>
-                            <td class="text-center">{{ 10 }}</td>
+                            <td class="text-center">{{ $user->point }}</td>
                             <td class="text-center">
                                 <div class="form-check form-switch ms-4 d-flex justify-content-center">
                                     <form action="{{ route('admin.user.status', ['id' => $user->id]) }}" method="POST"
