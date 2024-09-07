@@ -79,13 +79,13 @@
                         <label for="status" class="form-label">Trạng thái<span class="text-danger">*</span></label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="active" value="1"
-                                    {{ old('status') ? (old('status') == 1 ? 'checked' : '') : ($isUpdate ? ($user->status == 1 ? 'checked' : '') : 'checked') }}>
+                                <input class="form-check-input" type="radio" name="status" id="active" value="2"
+                                    {{ old('status') ? (old('status') == 2 ? 'checked' : '') : ($isUpdate ? ($user->status == 2 ? 'checked' : '') : 'checked') }}>
                                 <label class="form-check-label" for="active">Hoạt động</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="inactive" value="2"
-                                    {{ old('status') ? (old('status') == 2 ? 'checked' : '') : ($isUpdate ? ($user->status == 2 ? 'checked' : '') : '') }}>
+                                <input class="form-check-input" type="radio" name="status" id="inactive" value="1"
+                                    {{ old('status') ? (old('status') == 1 ? 'checked' : '') : ($isUpdate ? ($user->status == 1 ? 'checked' : '') : '') }}>
                                 <label class="form-check-label" for="inactive">Tạm khóa</label>
                             </div>
                         </div>

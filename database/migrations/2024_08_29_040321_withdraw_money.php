@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); 
             $table->string('point');
             $table->string('account_number');
+            $table->string('introducee')->nullable();
             $table->string('name_bank'); 
             $table->string('branch'); 
             $table->timestamps(); 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\ResetPassWordController;
 use App\Http\Controllers\User\UserClient;
@@ -39,6 +40,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('cap-nhap/{id}', 'update');
             Route::post('xoa/{id}', 'destroy')->name('delete');
             Route::post('trang-thai/{id}', 'postStatus')->name('status');
+        });
+        Route::controller(WithdrawalController::class)->prefix('withdrawal')->name('withdrawal.')->group(function () {
+            Route::get('/', 'index')->name('index');
         });
     });
 });

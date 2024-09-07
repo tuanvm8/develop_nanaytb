@@ -27,7 +27,7 @@ class WithdrawMoneyController extends Controller
             $messages = [
                 'point.required' => 'Số tiền không được để trống.',
                 'point.numeric' => 'Số tiền phải là một số.',
-                'point.min' => 'Số tiền phải có ít nhất 7 chữ số.',
+                'point.min' => 'Số tiền rút ít nhất là 200.000.',
                 'point.max' => 'Số tiền không được vượt quá 11 chữ số.',
                 'account_number.required' => 'Số tài khoản không được để trống.',
                 'account_number.numeric' => 'Số tài khoản phải là một số.',
@@ -36,19 +36,21 @@ class WithdrawMoneyController extends Controller
                 'name_bank.max' => 'Tên ngân hàng không được vượt quá 255 ký tự.',
                 'branch.required' => 'Chi nhánh không được để trống.',
                 'branch.max' => 'Chi nhánh không được vượt quá 255 ký tự.',
+                'introducee.max' => 'Người giới thiệu không được vượt quá 255 ký tự.',
             ];
 
             $request->validate([
-                'point' => 'required|numeric|min:1000000|max:99999999999',
+                'point' => 'required|numeric|min:200000|max:99999999999',
                 'account_number' => 'required|digits_between:3,30',
                 'name_bank' => 'required|max:255',
                 'branch' => 'required|max:255',
+                'introducee' => 'nullable|max:255',
             ], $messages);
 
             $user = Auth::user();
             $cash = $user->point;
             $text = 'Số tiền không đủ để thực hiện yêu cầu.';
-            if ($user->point >= 1000000) {
+            if ($user->point >= 200000 && $user->point >= $request->point) {
                 $items = new \App\Models\WithdrawMoney();
                 $items->user_id = $user->id;
                 $items->point = $request->point;

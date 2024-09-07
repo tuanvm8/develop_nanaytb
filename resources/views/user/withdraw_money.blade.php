@@ -8,7 +8,7 @@
                         <div class="row d-flex justify-content-center align-items-center pb-4 pt-2">
                             <div class=" col-lg-4 col-md-4 col-4  d-flex justify-content-center align-items-center pl-2 "
                                 style="padding-left: 20px;">
-                                <img class="rounded-circle img-fluid p-2 " src="{{ asset('images/image-login.png') }}"
+                                <img class="rounded-circle img-fluid p-2 " src="{{ asset('asset/images/image-login.png') }}"
                                     alt="" style="border: 1px solid #0dcaf0; " />
                             </div>
                             <div class=" col-lg-8 col-md-8 col-8">
@@ -24,37 +24,42 @@
                             <div class="mb-3">
                                 <label class="form-label">Số tiền</label>
                                 <input type="text" class="form-control" required="" name="point"
-                                    placeholder="Nhập số tiền muốn rút" value="{{ old('point') ?? Auth::user()->point }}"
-                                    style="pointer-events: none;">
-                                <p class="help is-danger text-danger confirm_password">{{ $errors->first('point') }}</p>
+                                    placeholder="Nhập số tiền muốn rút" value="{{ old('point') ?? Auth::user()->point }}">
+                                <p class="help is-danger text-danger ">{{ $errors->first('point') }}</p>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Số tài khoản</label>
                                 <input type="text" class="form-control" required="" name="account_number"
                                     placeholder="Nhập số tài khoản" value="{{ old('account_number') }}">
-                                <p class="help is-danger text-danger confirm_password">
+                                <p class="help is-danger text-danger ">
                                     {{ $errors->first('account_number') }}</p>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Ngân hàng</label>
                                 <input type="text" class="form-control" required="" name="name_bank"
                                     placeholder="Nhập tên ngân hàng" value="{{ old('name_bank') }}">
-                                <p class="help is-danger text-danger confirm_password">{{ $errors->first('name_bank') }}
+                                <p class="help is-danger text-danger ">{{ $errors->first('name_bank') }}
                                 </p>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Chi nhánh</label>
                                 <input type="text" class="form-control" required="" name="branch"
                                     placeholder="Nhập tên chi nhánh" value="{{ old('branch') }}">
-                                <p class="help is-danger text-danger confirm_password">{{ $errors->first('branch') }}</p>
+                                <p class="help is-danger text-danger ">{{ $errors->first('branch') }}</p>
                             </div>
-                            <p class="help is-danger text-danger confirm_password">{{ $errors->first('msg') }}</p>
-                            @if (Auth::check() && Auth::user()->point >= 1000000)
+                            <div class="mb-3">
+                                <label class="form-label">Người giới thiệu</label>
+                                <input type="text" class="form-control" name="introducee"
+                                    placeholder="Nhập thông tin người giới thiệu" value="{{ old('introducee') }}">
+                                <p class="help is-danger text-danger ">{{ $errors->first('introducee') }}</p>
+                            </div>
+                            <p class="help is-danger text-danger ">{{ $errors->first('msg') }}</p>
+                            @if (Auth::check() && Auth::user()->point >= 200000)
                                 <div class="mb-3 text-center ">
                                     <button type="submit" class="btn btn-main">YÊU CẦU RÚT TIỀN</button>
                                 </div>
                             @else
-                                <p class="help is-danger text-danger confirm_password">Tài khoản chưa đủ mức để được rút
+                                <p class="help is-danger text-danger ">Tài khoản chưa đủ mức để được rút
                                     tiền</p>
                             @endif
                         </form>
